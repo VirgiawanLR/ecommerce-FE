@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 //
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function MyNavbar() {
   const [hamburgerClicked, setHamburgerClicked] = useState(false);
+  const navigate = useNavigate();
 
   const hamButton = () => {
     setHamburgerClicked(!hamburgerClicked);
@@ -25,7 +26,7 @@ function MyNavbar() {
   items-center z-10 transition duration-300"
     >
       <div className="container">
-        <div className="flex items-center justify-between relative">
+        <div className="flex items-center justify-between relative secondary-font">
           <div className="px-8">
             <a
               href="#"
@@ -80,11 +81,11 @@ function MyNavbar() {
                   : "hidden md:static md:block md:bg-transparent"
               }
             >
-              <ul className="block text-dark md:flex">
+              <ul className="block text-dark md:flex lg:mr-4">
                 <li className="group">
                   <button
                     className="no-underline text-base py-2 mx-8 group-hover:text-primary
-                  lg:mx-4"
+                  lg:mx-8"
                   >
                     Cart
                   </button>

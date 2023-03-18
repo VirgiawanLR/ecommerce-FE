@@ -6,9 +6,11 @@ import CustomCheckbox from "../../components/form-component/CustomCheckbox";
 import { postUserData } from "../../features/users/userSlice";
 import { useDispatch } from "react-redux";
 import RegisterButton from "../../components/form-component/RegisterButton";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const loginSchema = Yup.object().shape({
     fullname: Yup.string().required("Must not blank"),
@@ -41,7 +43,7 @@ function Register() {
   };
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 py-16 secondary-font">
+    <section className="bg-gray-50 dark:bg-gray-900 py-16 px-8 secondary-font">
       <div
         className="flex flex-col items-center text-center justify-center px-6 
       py-8 mx-auto"
@@ -123,13 +125,13 @@ function Register() {
             <div className="space-y-4 md:space-y-6" action="#">
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Already have an account?{" "}
-                <a
-                  href="#terms"
-                  className="font-medium text-sky-600 hover:underline 
-                  dark:text-sky-500"
+                <button
+                  onClick={() => navigate("/login")}
+                  className="font-medium text-teal-600 hover:underline 
+                  dark:text-teal-500"
                 >
                   Login here
-                </a>
+                </button>
               </p>
             </div>
           </div>
