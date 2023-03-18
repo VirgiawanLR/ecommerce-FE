@@ -5,18 +5,21 @@ function LoginForm() {
   const navigate = useNavigate();
 
   return (
-    <section class="dark:bg-gray-900 py-20 px-10 lg:py-4 secondary-font">
-      <div class="flex flex-col lg:flex-row items-center gap-8 justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 relative">
-        <div>
+    <section class="dark:bg-gray-900 pt-20 px-4 lg:pt-32 secondary-font">
+      <div class="flex flex-col lg:flex-row items-center gap-8 justify-center px-6 pt-8 mx-auto lg:py-0 relative">
+        <div className="-mb-16 scale-105 lg:mb-0 lg:-mr-16 lg:scale-[1.15]">
           <img
             src={require("../../assets/images/login-img.avif")}
             height={600}
             width={600}
             alt="login-img.avif"
-            className="rounded-xl"
+            className="rounded-xl bg-teal-500 opacity-90"
           />
         </div>
-        <div class="w-full bg-white rounded-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+        <div
+          class="w-11/12 md:w-full bg-white shadow-xl rounded-lg dark:border md:mt-0 z-50
+          sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 pb-12"
+        >
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 class="text-xl font-extrabold leading-tight text-dark md:text-2xl dark:text-white main-font tracking-normal">
               Sign in to your account
