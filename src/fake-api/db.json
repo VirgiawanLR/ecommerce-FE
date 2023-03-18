@@ -1,0 +1,13 @@
+{
+  "user": [
+    {
+      "fullname": "virgiawan",
+      "username": "cloudawan",
+      "email": "awan@awan",
+      "password": "password",
+      "isVerified": false,
+      "role": "user",
+      "id": 1
+    }
+  ]
+}
