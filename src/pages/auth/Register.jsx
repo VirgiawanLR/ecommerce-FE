@@ -41,12 +41,12 @@ function Register() {
   };
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 py-20 secondary-font">
+    <section className="bg-gray-50 dark:bg-gray-900 py-16 secondary-font">
       <div
         className="flex flex-col items-center text-center justify-center px-6 
-      py-8 mx-auto md:h-screen lg:py-0"
+      py-8 mx-auto"
       >
-        <h1 className="mt-10 mb-6 main-font font-extrabold text-dark">
+        <h1 className="mt-10 mb-6 main-font text-3xl font-extrabold text-dark">
           Register now!
         </h1>
         <h3 className=" font-extralight mb-10 text-lg text-secondary">
