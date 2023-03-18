@@ -7,7 +7,6 @@ import History from "./pages/History";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 import Admin from "./pages/Admin";
-import "bootstrap/dist/css/bootstrap.css";
 import MyNavbar from "./components/MyNavbar";
 import { fetchUserData } from "./features/users/userSlice";
 import { useEffect } from "react";
