@@ -44,7 +44,7 @@ function MyNavbar() {
           </div>
           <div className="flex items-center gap-10 md:gap-0">
             <div className="flex items-center gap-1 group">
-              <i class="uil uil-user-circle text-primary text-3xl hover:cursor-pointer"></i>
+              <i className="uil uil-user-circle text-primary text-3xl hover:cursor-pointer"></i>
               <span
                 className=" text-sm text-dark font-bold group-hover:text-primary
                 group-hover:cursor-pointer"
