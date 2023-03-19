@@ -43,18 +43,11 @@ function Register() {
   };
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 py-16 px-8 secondary-font">
+    <section className="bg-gray-50 dark:bg-gray-900 pt-16 px-8 secondary-font">
       <div
         className="flex flex-col items-center text-center justify-center px-6 
-      py-8 mx-auto"
+      pt-8 mx-auto"
       >
-        <h1 className="mt-10 mb-6 main-font text-3xl font-extrabold text-dark">
-          Register now!
-        </h1>
-        <h3 className=" font-extralight mb-10 text-lg text-secondary">
-          Register now and start shopping in the most affordable ecommerce
-          platform
-        </h3>
         <div
           className="w-full bg-white rounded-lg shadow dark:border 
         md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 text-left"
