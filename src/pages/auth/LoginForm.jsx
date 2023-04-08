@@ -2,26 +2,41 @@ import { Field, Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginCheck } from "../../features/users/userSlice";
+import { useEffect, useState } from "react";
 
 function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const selector = useSelector((state) => state.user.loginUser);
-  const onSubmit = (values, action) => {
-    dispatch(loginCheck(values));
-    action.resetForm();
+  const [response, setResponse] = useState(null);
+
+  const onSubmit = async (values, action) => {
+    try {
+      const result = await dispatch(loginCheck(values));
+      localStorage.setItem("token_shutter", result.data.token);
+      if (result.data.isSuccess) {
+        response(result.data);
+        setResponse(null);
+        navigate("/");
+      } //redirect to home page after login success
+      else {
+        setResponse(result.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
-  console.log("isSuccess", selector.isSuccessed);
-  console.log("message", selector.message);
+
+  // useEffect(() => {}, [response]);
 
   return (
     <section className="dark:bg-gray-900 pt-20 px-4 lg:pt-32 secondary-font">
       <div className="flex flex-col lg:flex-row items-center gap-8 justify-center px-6 pt-8 mx-auto lg:py-0 relative">
-        <div className="-mb-16 scale-105 lg:mb-0 lg:-mr-16 lg:scale-[1.15]">
+        <div className="-mb-16 scale-105 lg:mb-0 lg:-mr-12 lg:scale-[1.15]">
           <img
-            src={require("../../assets/images/login-img.avif")}
-            height={600}
-            width={600}
+            src={require("../../assets/images/cart-icon.png")}
+            height={450}
+            width={450}
             alt="login-img.avif"
             className="rounded-xl bg-teal-500 opacity-90"
           />
@@ -31,6 +46,9 @@ function LoginForm() {
           sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 pb-12"
         >
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+            {!response?.isSuccess && (
+              <div className="text-red-400 font-bold">{response?.message}</div>
+            )}
             <h1 className="text-xl font-extrabold leading-tight text-dark md:text-2xl dark:text-white main-font tracking-normal">
               Sign in to your account
             </h1>

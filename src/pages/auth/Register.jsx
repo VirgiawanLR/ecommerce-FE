@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import CustomForm from "../../components/form-component/CustomForm";
@@ -11,8 +11,10 @@ import { useNavigate } from "react-router-dom";
 function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [termsValue, setTermsValue] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
 
-  const loginSchema = Yup.object().shape({
+  const registerSchema = Yup.object().shape({
     fullname: Yup.string().required("Must not blank"),
     username: Yup.string().required("Must not blank"),
     email: Yup.string()
@@ -21,31 +23,32 @@ function Register() {
     password: Yup.string()
       .min(3, "password must at least 3 characters")
       .required("Must not blank"),
-    terms: Yup.boolean().oneOf(
-      [true],
-      "Please accept the service's terms and condition"
-    ),
   });
 
   const onSubmit = (values, actions) => {
-    const { email, fullname, username, password } = values;
-    dispatch(
-      postUserData({
-        fullname: fullname.toLowerCase(),
-        username,
-        email,
-        password,
-        isVerified: false,
-        role: "user",
-      })
-    );
-    actions.resetForm();
+    if (!values.terms) {
+      setTermsValue(true);
+    } else {
+      const { email, fullname, username, password } = values;
+      dispatch(
+        postUserData({
+          fullname: fullname.toLowerCase(),
+          username,
+          email,
+          password,
+        })
+      );
+      setTermsValue(false);
+
+      setIsSubmit(true);
+      actions.resetForm();
+    }
   };
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 pt-16 px-8 secondary-font">
+    <section className="background-curves pb-24 bg-gray-50 dark:bg-gray-900 pt-16 px-8 secondary-font">
       <div
-        className="flex flex-col items-center text-center justify-center px-6 
+        className="z-auto flex flex-col items-center text-center justify-center px-6 
       pt-8 mx-auto"
       >
         <div
@@ -53,6 +56,28 @@ function Register() {
         md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 text-left"
         >
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+            {termsValue && (
+              <h1
+                className="placeholder-red-400 bg-red-50 border-2 border-red-500 
+              text-red-900 sm:text-sm rounded-lg focus:ring-red-600 focus:border-red-600 
+              block w-full p-2.5 dark:bg-gray-700 dark:border-2 dark:border-red-600 
+              dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 
+              dark:focus:border-red-500"
+              >
+                Please accept the service's terms and condition
+              </h1>
+            )}
+            {isSubmit && (
+              <h1
+                className="placeholder-sky-400 bg-sky-50 border-2 border-sky-500 
+              text-sky-900 sm:text-sm rounded-lg focus:ring-sky-600 focus:border-sky-600 
+              block w-full p-2.5 dark:bg-gray-700 dark:border-2 dark:border-sky-600 
+              dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 
+              dark:focus:border-sky-500"
+              >
+                Check your email for verification
+              </h1>
+            )}
             <h1
               className="text-xl font-extrabold text-primary main-font leading-tight tracking-tight 
               md:text-2xl dark:text-white"
@@ -66,7 +91,7 @@ function Register() {
                 email: "",
                 password: "",
               }}
-              validationSchema={loginSchema}
+              validationSchema={registerSchema}
               onSubmit={onSubmit}
             >
               {(props) => {
@@ -128,6 +153,11 @@ function Register() {
               </p>
             </div>
           </div>
+        </div>
+        <div className=" mt-36">
+          <span className=" font-medium text-sm text-white">
+            ©2023, Virgiawan Listanto Rahagung
+          </span>
         </div>
       </div>
     </section>

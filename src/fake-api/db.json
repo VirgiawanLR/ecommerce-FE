@@ -8,6 +8,15 @@
       "isVerified": false,
       "role": "user",
       "id": 1
+    },
+    {
+      "fullname": "nida nurhadi",
+      "username": "NidaNH",
+      "email": "nidanida@nida.com",
+      "password": "password123",
+      "isVerified": false,
+      "role": "user",
+      "id": 2
     }
   ]
 }
