@@ -62,6 +62,7 @@ function ProductDetail() {
       const img = document.createElement("img");
       img.src = imgUrl;
       imgArea.appendChild(img);
+
       img.classList.add(
         "absolute",
         "top-0",
