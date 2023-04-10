@@ -9,7 +9,7 @@ function ProductDetail() {
   const [addProduct, setAddProduct] = useState(true);
   const [myProduct, setMyproduct] = useState(false);
   const [images, setImage] = useState(null);
-  const imgArea = document.querySelector("#image-preview");
+  const [imgArea, setimgArea] = useState(null);
 
   const loginSchema = Yup.object().shape({
     productname: Yup.string().required("Must not blank"),
@@ -32,8 +32,7 @@ function ProductDetail() {
 
   const onSubmit = async (values, actions) => {
     const { productname, category, description, price, quantity } = values;
-    // console.log(values);
-    // console.log(images);
+
     let formData = new FormData();
     const productData = {
       product_name: productname,
@@ -51,11 +50,15 @@ function ProductDetail() {
   // Instead, you can use the useEffect hook to run a
   // function every time images changes:
   useEffect(() => {}, [images]);
+  useEffect(() => {
+    setimgArea(document.querySelector("#image-preview"));
+  }, []);
 
   const imageOnChange = (event) => {
     const file = event.target.files[0];
     setImage(file);
     const reader = new FileReader();
+    console.log(imgArea);
     imgArea.removeChild(imgArea.lastChild);
     reader.onload = () => {
       const imgUrl = reader.result;
